@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Thanks for Ordering</h1>
+  <p>Total <%= number_with_precision(@order.total_cents / 100, precision: 2) %></p>
+
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th colspan="2">Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_total = 0 %>
+      <% @line_items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+
+      <tr>
+        <td>
+          <h4><%= item.product.name %></h4>
+          <br>
+          <p><%= item.product.description %></p>
+        </td>
+
+        <td>
+          <%= number_with_precision(item.item_price_cents / 100.00, precision: 2) %>
+        </td>
+
+        <td>
+          <%= item.quantity %>
+        </td>
+
+        <td>
+          <%= number_with_precision(item.total_price_cents / 100.00, precision: 2) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</body>
+</html>
