@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-
-
   private
 
   # Make the current_user method available to views also, not just controllers:
@@ -28,6 +26,10 @@ class ApplicationController < ActionController::Base
       expires: 10.days.from_now
     }
     cookies[:cart]
+  end
+
+  def logged_in?
+    session[:user_id] != nil
   end
 
 end

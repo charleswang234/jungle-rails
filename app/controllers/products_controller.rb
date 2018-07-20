@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     @reviews = @product.reviews.includes(:user)
+    @logged_in = logged_in?
+    @current_user = current_user
   end
 
 end
