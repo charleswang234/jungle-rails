@@ -153,4 +153,22 @@ user1.reviews.create!({
   rating: 4
 })
 
+user1.reviews.create!({
+  product_id: 1,
+  description: "This is the second review",
+  rating: 0
+})
+
+user1.reviews.create!({
+  product_id: 2,
+  description: "Cool",
+  rating: 3
+})
+
+user1.reviews.create!({
+  product_id: 3,
+  description: "Wow",
+  rating: 4
+})
+
 # Review
