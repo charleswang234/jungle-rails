@@ -22,7 +22,7 @@ RSpec.describe Product, type: :model do
     # puts @product.errors.full_messages
     # binding.pry
     expect(@product).not_to be_valid
-    expect(@product.errors.full_messages[0]).to eq("Name can't be blank")
+    expect(@product.errors.full_messages).to eq(["Name can't be blank"])
   end
 
   it "is not valid without a price" do

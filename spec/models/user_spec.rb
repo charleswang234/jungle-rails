@@ -71,6 +71,38 @@ RSpec.describe User, type: :model do
     end
   end
 
+
+  describe '.authenticate_with_credentials' do
+    before :each do
+      @user1 = User.new(first_name: "charles", last_name: "wang", email: "charleswang234@gmail.com", password: "newer", password_confirmation: "newer")
+      @user1.save
+    end
+
+    it "is valid when the email and password are valid" do
+      @user2 = User.authenticate_with_credentials("charleswang234@gmail.com", "newer")
+      expect(@user2).to eq(@user1)
+    end
+
+    it "is not valid when email and password are incorrect" do
+      @user2 = User.authenticate_with_credentials("charleswang234@gmail.com", "new")
+      expect(@user2).to be_nil
+    end
+
+    it "is valid when email is uppercased" do
+      @user2 = User.authenticate_with_credentials("CHARLESWANG234@GMAIL.COM", "newer")
+       expect(@user2).to eq(@user1)
+    end
+
+    it "is valid when email has spaces on the edges" do
+      @user2 = User.authenticate_with_credentials(" charleswang234@gmail.com ", "newer")
+      expect(@user2).to eq(@user1)
+    end
+  end
+
+
+
+
+
 end
 
 
