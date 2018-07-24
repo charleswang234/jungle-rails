@@ -30,7 +30,7 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
 
     page.find('footer').find('.pull-right').click
     expect(page).to have_content("Reviews")
-    save_screenshot
+    save_screenshot # waits for previous line to run
   end
 
 end
